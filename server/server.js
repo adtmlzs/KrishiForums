@@ -34,11 +34,18 @@ const ADMIN_PASSWORD_HASH = bcrypt.hashSync('krishi@2026', 10);
 
 // Middleware
 app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'x-admin-password']
+    origin: true, // Reflection: returns the origin of the request
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'x-admin-password', 'Authorization'],
+    optionsSuccessStatus: 200
 }));
 app.use(express.json());
+
+// Root route for health check
+app.get('/', (req, res) => {
+    res.json({ message: 'Krishi Mitra API is alive 🚀' });
+});
 
 // Admin authentication middleware
 const authenticateAdmin = async (req, res, next) => {
