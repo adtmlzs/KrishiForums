@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Krishi Mitra - A smart farming assistant that monitors soil, detects diseases, and guides farmers with real-time data.">
+    <title>Krishi Mitra: The Smart Farming Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" fill="#3A7D44" opacity="0.2"/>
+                        <path d="M20 8C18.5 8 17.5 9.5 17.5 11C17.5 12.5 18 14 18 15.5V20C18 20 16 20 14 22C12 24 11 27 11 30C11 31 11.5 32 13 32C14.5 32 15 31 15 30C15 28.5 15.5 26.5 17 25C18 24 19 24 20 24C21 24 22 24 23 25C24.5 26.5 25 28.5 25 30C25 31 25.5 32 27 32C28.5 32 29 31 29 30C29 27 28 24 26 22C24 20 22 20 22 20V15.5C22 14 22.5 12.5 22.5 11C22.5 9.5 21.5 8 20 8Z" fill="#3A7D44"/>
+                        <circle cx="20" cy="11" r="2" fill="#7CB342"/>
+                    </svg>
+                    <span>Krishi Mitra</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#problem" class="nav-link">Problem</a></li>
+                    <li><a href="#solution" class="nav-link">Solution</a></li>
+                    <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                    <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+                    <li><a href="#team" class="nav-link">Team</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-on-scroll">
+                    Krishi Mitra: The Smart Farming Assistant
+                </h1>
+                <p class="hero-subtitle animate-on-scroll">
+                    A robotic friend for farmers that monitors soil, detects diseases, and guides you with real-time data.
+                </p>
+                <a href="#solution" class="cta-button animate-on-scroll">
+                    <span>Explore the Technology</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="#7CB342" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="#7CB342" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Real-time Monitoring</span>
+                    </div>
+                    <div class="hero-feature">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7CB342"/>
+                        </svg>
+                        <span>AI-Powered Analysis</span>
+                    </div>
+                    <div class="hero-feature">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="2" width="14" height="20" rx="2" stroke="#7CB342" stroke-width="2"/>
+                            <path d="M9 10H15M9 14H15" stroke="#7CB342" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Mobile App</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">The Challenge Farmers Face</h2>
+                <p class="section-subtitle">Traditional farming methods leave too much to chance</p>
+            </div>
+            
+            <div class="problem-content">
+                <div class="problem-image animate-on-scroll">
+                    <div class="problem-visual">
+                        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="50" y="200" width="300" height="80" fill="#8B7355" opacity="0.3"/>
+                            <path d="M100 200 Q 100 180 120 180 Q 130 180 130 170 Q 130 160 140 160 L 145 130" stroke="#3A7D44" stroke-width="3" fill="none"/>
+                            <circle cx="145" cy="125" r="8" fill="#D4A574"/>
+                            <path d="M200 200 Q 200 185 215 185 Q 220 185 220 180 Q 220 170 225 170 L 230 140" stroke="#A0826D" stroke-width="3" fill="none"/>
+                            <circle cx="230" cy="135" r="6" fill="#8B7355"/>
+                            <text x="50" y="50" font-family="Inter" font-size="16" fill="#1A1A1A" font-weight="600">❌ Late Detection</text>
+                            <text x="250" y="50" font-family="Inter" font-size="16" fill="#1A1A1A" font-weight="600">❌ Resource Waste</text>
+                            <text x="50" y="120" font-family="Inter" font-size="16" fill="#1A1A1A" font-weight="600">❌ Guesswork</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="problem-text animate-on-scroll">
+                    <p class="problem-description">
+                        Many farmers today still depend on <strong>traditional methods</strong> without real-time information about their soil or crops. They rely on experience and intuition, which can lead to costly mistakes.
+                    </p>
+                    
+                    <div class="problem-risks">
+                        <div class="risk-card">
+                            <div class="risk-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="20" fill="#D4A574" opacity="0.2"/>
+                                    <path d="M24 14V26M24 30V32" stroke="#8B7355" stroke-width="3" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Nutrient Imbalance</h3>
+                            <p>Without proper soil testing, crops suffer from deficiencies</p>
+                        </div>
+                        
+                        <div class="risk-card">
+                            <div class="risk-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="20" fill="#7CB342" opacity="0.2"/>
+                                    <path d="M18 24C18 24 20 20 24 20C28 20 30 24 30 24C30 24 28 28 24 28C20 28 18 24 18 24Z" stroke="#3A7D44" stroke-width="2"/>
+                                    <path d="M24 22V26" stroke="#3A7D44" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Improper Watering</h3>
+                            <p>Over or under-watering damages crops and wastes water</p>
+                        </div>
+                        
+                        <div class="risk-card">
+                            <div class="risk-icon">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="20" fill="#E8C4A0" opacity="0.2"/>
+                                    <path d="M24 16C20 16 18 20 18 24C18 26 19 28 20 29C21 30 22 31 24 32C26 31 27 30 28 29C29 28 30 26 30 24C30 20 28 16 24 16Z" stroke="#A0826D" stroke-width="2"/>
+                                    <circle cx="22" cy="22" r="1.5" fill="#A0826D"/>
+                                </svg>
+                            </div>
+                            <h3>Late Disease Detection</h3>
+                            <p>Plant diseases spread quickly when detected too late</p>
+                        </div>
+                    </div>
+                    
+                    <p class="problem-impact">
+                        These challenges often lead to <strong>reduced crop yields</strong> and <strong>increased losses</strong>, making farming less profitable and sustainable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Meet Your Smart Farming Partner</h2>
+                <p class="section-subtitle">Krishi Mitra is a mobile robotic system that moves through your field, collecting data from different locations rather than just one spot</p>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="28" fill="url(#gradient1)" opacity="0.2"/>
+                            <circle cx="32" cy="32" r="20" stroke="url(#gradient1)" stroke-width="3"/>
+                            <path d="M32 22V32L38 38" stroke="#3A7D44" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="32" cy="12" r="3" fill="#7CB342"/>
+                            <circle cx="32" cy="52" r="3" fill="#7CB342"/>
+                            <circle cx="12" cy="32" r="3" fill="#7CB342"/>
+                            <circle cx="52" cy="32" r="3" fill="#7CB342"/>
+                            <defs>
+                                <linearGradient id="gradient1" x1="0" y1="0" x2="64" y2="64">
+                                    <stop offset="0%" stop-color="#3A7D44"/>
+                                    <stop offset="100%" stop-color="#7CB342"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">IoT Sensors</h3>
+                    <p class="feature-description">
+                        Advanced sensors continuously measure <strong>NPK levels</strong>, <strong>soil moisture</strong>, and <strong>pH balance</strong>, providing comprehensive soil health data.
+                    </p>
+                    <div class="feature-badges">
+                        <span class="badge">NPK Analysis</span>
+                        <span class="badge">Moisture Tracking</span>
+                        <span class="badge">pH Monitoring</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="16" width="40" height="32" rx="4" fill="#7CB342" opacity="0.2"/>
+                            <rect x="12" y="16" width="40" height="32" rx="4" stroke="#3A7D44" stroke-width="3"/>
+                            <circle cx="32" cy="32" r="8" stroke="#3A7D44" stroke-width="2"/>
+                            <circle cx="32" cy="32" r="4" fill="#7CB342"/>
+                            <path d="M20 24L22 22M44 24L42 22M20 40L22 42M44 40L42 42" stroke="#3A7D44" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Visual Scanning</h3>
+                    <p class="feature-description">
+                        High-resolution camera scans crop leaves to capture visual indicators of health, stress, or disease for detailed analysis.
+                    </p>
+                    <div class="feature-badges">
+                        <span class="badge">HD Imaging</span>
+                        <span class="badge">Leaf Analysis</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="24" fill="url(#gradient2)" opacity="0.2"/>
+                            <path d="M20 32C20 32 24 24 32 24C40 24 44 32 44 32C44 32 40 40 32 40C24 40 20 32 20 32Z" stroke="#3A7D44" stroke-width="3"/>
+                            <circle cx="32" cy="32" r="6" fill="#7CB342"/>
+                            <path d="M28 20L30 16L34 16L36 20" stroke="#3A7D44" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M28 44L30 48L34 48L36 44" stroke="#3A7D44" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="gradient2" x1="0" y1="0" x2="64" y2="64">
+                                    <stop offset="0%" stop-color="#7CB342"/>
+                                    <stop offset="100%" stop-color="#9CCC65"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">AI Analysis</h3>
+                    <p class="feature-description">
+                        Machine learning algorithms identify issues like <strong>nutrient deficiency</strong> or <strong>fungal infections</strong> with high accuracy.
+                    </p>
+                    <div class="feature-badges">
+                        <span class="badge">Disease Detection</span>
+                        <span class="badge">Smart Insights</span>
+                    </div>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="18" y="10" width="28" height="44" rx="4" fill="#3A7D44" opacity="0.2"/>
+                            <rect x="18" y="10" width="28" height="44" rx="4" stroke="#3A7D44" stroke-width="3"/>
+                            <rect x="22" y="16" width="20" height="14" rx="2" fill="#7CB342" opacity="0.3"/>
+                            <circle cx="32" cy="46" r="3" stroke="#3A7D44" stroke-width="2"/>
+                            <path d="M26 36H38M26 40H34" stroke="#7CB342" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Mobile App</h3>
+                    <p class="feature-description">
+                        Easy-to-use mobile application shows farmers the condition of their soil and provides <strong>actionable recommendations</strong> in real-time.
+                    </p>
+                    <div class="feature-badges">
+                        <span class="badge">Real-time Data</span>
+                        <span class="badge">Smart Alerts</span>
+                        <span class="badge">Easy Interface</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Why It Matters</h2>
+                <p class="section-subtitle">Transform your farming with data-driven decision making</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-number">01</div>
+                    <div class="benefit-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="28" cy="28" r="24" fill="#7CB342" opacity="0.2"/>
+                            <path d="M28 12L32 20L40 22L34 28L36 36L28 32L20 36L22 28L16 22L24 20L28 12Z" fill="#3A7D44"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Early Detection</h3>
+                    <p class="benefit-description">
+                        Identify problems before they become disasters. Prevent crop damage and <strong>increase yield by up to 30%</strong> through timely interventions.
+                    </p>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-number">02</div>
+                    <div class="benefit-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="28" cy="28" r="24" fill="#9CCC65" opacity="0.2"/>
+                            <path d="M20 28C20 28 24 20 28 20C32 20 36 28 36 28" stroke="#3A7D44" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M28 20V32M24 28L28 32L32 28" stroke="#3A7D44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Cost Efficiency</h3>
+                    <p class="benefit-description">
+                        Optimize water and fertilizer usage based on actual needs. <strong>Reduce waste by 40%</strong> and lower your overall farming costs significantly.
+                    </p>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-number">03</div>
+                    <div class="benefit-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="28" cy="28" r="24" fill="#D4A574" opacity="0.2"/>
+                            <circle cx="28" cy="28" r="16" stroke="#8B7355" stroke-width="3"/>
+                            <circle cx="28" cy="28" r="4" fill="#A0826D"/>
+                            <path d="M28 12V20M28 36V44M12 28H20M36 28H44" stroke="#A0826D" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Accuracy</h3>
+                    <p class="benefit-description">
+                        Replace guesswork with <strong>precise, data-driven insights</strong>. Make informed decisions backed by accurate soil and crop health metrics.
+                    </p>
+                </div>
+                
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-number">04</div>
+                    <div class="benefit-icon">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="28" cy="28" r="24" fill="#E8C4A0" opacity="0.2"/>
+                            <path d="M20 32C20 28 22 24 28 24C34 24 36 28 36 32C36 36 34 38 28 40C22 38 20 36 20 32Z" stroke="#A0826D" stroke-width="3"/>
+                            <circle cx="28" cy="20" r="3" fill="#D4A574"/>
+                            <path d="M24 44H32" stroke="#A0826D" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Accessibility</h3>
+                    <p class="benefit-description">
+                        An <strong>easy-to-use and affordable</strong> solution designed for farmers of all scales, from small holdings to large farms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="roadmap-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Future Roadmap</h2>
+                <p class="section-subtitle">Continuous innovation for smarter farming</p>
+            </div>
+            
+            <div class="roadmap-timeline">
+                <div class="roadmap-item animate-on-scroll">
+                    <div class="roadmap-marker">
+                        <div class="marker-dot"></div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" fill="#7CB342" opacity="0.2"/>
+                                <path d="M14 24L20 18M34 24L28 18M24 12V24M24 24L18 30M24 24L30 30" stroke="#3A7D44" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Advanced Integration</h3>
+                        <p>Incorporate weather forecasting and satellite imagery to predict crop yield and environmental risks with greater precision.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item animate-on-scroll">
+                    <div class="roadmap-marker">
+                        <div class="marker-dot"></div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" fill="#9CCC65" opacity="0.2"/>
+                                <circle cx="18" cy="24" r="6" stroke="#3A7D44" stroke-width="2.5"/>
+                                <circle cx="30" cy="24" r="6" stroke="#3A7D44" stroke-width="2.5"/>
+                                <path d="M24 18V30" stroke="#7CB342" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Crop Expansion</h3>
+                        <p>Extend support for diverse crop types and regional soil variations, making Krishi Mitra adaptable to different farming contexts.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item animate-on-scroll">
+                    <div class="roadmap-marker">
+                        <div class="marker-dot"></div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" fill="#D4A574" opacity="0.2"/>
+                                <path d="M16 30C16 26 18 22 24 22C30 22 32 26 32 30" stroke="#A0826D" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="20" cy="18" r="3" stroke="#8B7355" stroke-width="2"/>
+                                <circle cx="28" cy="18" r="3" stroke="#8B7355" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>Cloud Connectivity</h3>
+                        <p>Implement cloud-based data storage and analytics for better long-term monitoring and remote access from anywhere.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item animate-on-scroll">
+                    <div class="roadmap-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" fill="#E8C4A0" opacity="0.2"/>
+                                <path d="M14 20H34M14 24H30M14 28H26" stroke="#A0826D" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="38" cy="20" r="2" fill="#D4A574"/>
+                                <circle cx="34" cy="24" r="2" fill="#D4A574"/>
+                                <circle cx="30" cy="28" r="2" fill="#D4A574"/>
+                            </svg>
+                        </div>
+                        <h3>Universal Accessibility</h3>
+                        <p>Add multilingual support and automation features to ensure Krishi Mitra is accessible to farmers across all regions and literacy levels.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Meet the Team</h2>
+                <p class="section-subtitle">Innovators combining technology and agriculture to solve real-world problems</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="60" cy="60" r="60" fill="url(#teamGradient1)"/>
+                            <circle cx="60" cy="45" r="20" fill="white" opacity="0.3"/>
+                            <path d="M30 90C30 75 42 65 60 65C78 65 90 75 90 90" fill="white" opacity="0.3"/>
+                            <defs>
+                                <linearGradient id="teamGradient1" x1="0" y1="0" x2="120" y2="120">
+                                    <stop offset="0%" stop-color="#3A7D44"/>
+                                    <stop offset="100%" stop-color="#7CB342"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="team-name">Amulya</h3>
+                    <p class="team-role">Co-Founder & Engineer</p>
+                    <p class="team-bio">Passionate about IoT and hardware integration</p>
+                </div>
+                
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="60" cy="60" r="60" fill="url(#teamGradient2)"/>
+                            <circle cx="60" cy="45" r="20" fill="white" opacity="0.3"/>
+                            <path d="M30 90C30 75 42 65 60 65C78 65 90 75 90 90" fill="white" opacity="0.3"/>
+                            <defs>
+                                <linearGradient id="teamGradient2" x1="0" y1="0" x2="120" y2="120">
+                                    <stop offset="0%" stop-color="#7CB342"/>
+                                    <stop offset="100%" stop-color="#9CCC65"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="team-name">Aditya</h3>
+                    <p class="team-role">Co-Founder & Developer</p>
+                    <p class="team-bio">Expert in AI and software development</p>
+                </div>
+                
+                <div class="team-card animate-on-scroll">
+                    <div class="team-avatar">
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="60" cy="60" r="60" fill="url(#teamGradient3)"/>
+                            <circle cx="60" cy="45" r="20" fill="white" opacity="0.3"/>
+                            <path d="M30 90C30 75 42 65 60 65C78 65 90 75 90 90" fill="white" opacity="0.3"/>
+                            <defs>
+                                <linearGradient id="teamGradient3" x1="0" y1="0" x2="120" y2="120">
+                                    <stop offset="0%" stop-color="#8B7355"/>
+                                    <stop offset="100%" stop-color="#D4A574"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="team-name">Naitik</h3>
+                    <p class="team-role">Co-Founder & Designer</p>
+                    <p class="team-bio">Focused on user experience and product design</p>
+                </div>
+            </div>
+            
+            <div class="team-mission animate-on-scroll">
+                <div class="mission-card">
+                    <h3>Our Mission</h3>
+                    <p>
+                        To bridge the gap between technology and agriculture, making advanced farming tools accessible to every farmer. 
+                        We believe that smart farming shouldn't be a luxury—it should be a standard that helps farmers thrive sustainably.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#7CB342" opacity="0.3"/>
+                            <path d="M20 8C18.5 8 17.5 9.5 17.5 11C17.5 12.5 18 14 18 15.5V20C18 20 16 20 14 22C12 24 11 27 11 30C11 31 11.5 32 13 32C14.5 32 15 31 15 30C15 28.5 15.5 26.5 17 25C18 24 19 24 20 24C21 24 22 24 23 25C24.5 26.5 25 28.5 25 30C25 31 25.5 32 27 32C28.5 32 29 31 29 30C29 27 28 24 26 22C24 20 22 20 22 20V15.5C22 14 22.5 12.5 22.5 11C22.5 9.5 21.5 8 20 8Z" fill="#7CB342"/>
+                            <circle cx="20" cy="11" r="2" fill="#9CCC65"/>
+                        </svg>
+                        <span>Krishi Mitra</span>
+                    </a>
+                    <p class="footer-tagline">Your Smart Farming Partner</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#problem">Problem</a></li>
+                            <li><a href="#solution">Solution</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Learn More</h4>
+                        <ul>
+                            <li><a href="#benefits">Benefits</a></li>
+                            <li><a href="#roadmap">Roadmap</a></li>
+                            <li><a href="#team">Team</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Krishi Mitra. Building the future of smart farming.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

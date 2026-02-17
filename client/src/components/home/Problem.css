@@ -1,0 +1,94 @@
+.problem-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.problem-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.problem-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.problem-card {
+    background: #FFF8F0;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(229, 57, 53, 0.08);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: var(--delay, 0s);
+    transition: 0.3s ease;
+}
+
+.problem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.problem-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.problem-card h3 {
+    font-size: 1.15rem;
+    color: #c62828;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.problem-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .problem-section {
+        padding: 4rem 0;
+    }
+
+    .problem-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .problem-section {
+        padding: 3rem 0;
+    }
+
+    .problem-card {
+        padding: 1.5rem;
+    }
+}

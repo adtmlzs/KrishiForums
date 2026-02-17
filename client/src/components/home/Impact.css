@@ -1,0 +1,195 @@
+.impact-section {
+    padding: 6rem 0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.impact-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.impact-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.impact-card {
+    background: linear-gradient(135deg, #f9fbf7 0%, #f0f7eb 100%);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    border: 1px solid rgba(124, 179, 66, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+.impact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(58, 125, 68, 0.15);
+    border-color: #7CB342;
+}
+
+.impact-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(58, 125, 68, 0.1), rgba(124, 179, 66, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: 0.3s ease;
+}
+
+.impact-card:hover .impact-icon-wrap {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.impact-icon {
+    font-size: 1.75rem;
+}
+
+.impact-card h3 {
+    font-size: 1.25rem;
+    color: #1a1a1a;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+}
+
+.impact-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.impact-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(124, 179, 66, 0.15);
+}
+
+.stat-highlight {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #3A7D44;
+    font-family: 'Poppins', sans-serif;
+}
+
+.stat-text {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Innovation Strip */
+.innovation-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    background: linear-gradient(135deg, #2D5016 0%, #3A7D44 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.innovation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: 0.3s ease;
+}
+
+.innovation-item:hover {
+    transform: translateY(-3px);
+}
+
+.inno-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.innovation-item h4 {
+    color: #FFD700;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.innovation-item p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .impact-section {
+        padding: 4rem 0;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .innovation-strip {
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem 1.5rem;
+    }
+
+    .impact-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .impact-section {
+        padding: 3rem 0;
+    }
+
+    .impact-card {
+        padding: 1.5rem;
+    }
+
+    .innovation-strip {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.25rem;
+    }
+}

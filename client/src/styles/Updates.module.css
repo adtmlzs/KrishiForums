@@ -1,0 +1,181 @@
+.updatesPage {
+    padding: 3rem 0 4rem;
+    min-height: 100vh;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.container h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #777;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.6s ease-out 0.1s both;
+}
+
+.loading,
+.emptyState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    font-size: 1.25rem;
+    color: #3A7D44;
+}
+
+.updatesList {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.updatesList::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #7CB342 0%, rgba(124, 179, 66, 0.15) 100%);
+    border-radius: 2px;
+}
+
+.updateCard {
+    position: relative;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: 1.5rem;
+    margin-left: 1.5rem;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInLeft 0.5s ease-out both;
+}
+
+.updateCard:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.updateCard:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.updateCard:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.updateCard:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.updateCard::before {
+    content: '';
+    position: absolute;
+    left: -2.625rem;
+    top: 1.5rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #7CB342;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #7CB342;
+    transition: 0.3s ease;
+}
+
+.updateCard:hover {
+    transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    border-color: rgba(58, 125, 68, 0.12);
+}
+
+.updateCard:hover::before {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px #7CB342, 0 0 12px rgba(124, 179, 66, 0.3);
+}
+
+.category {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(124, 179, 66, 0.1);
+    color: #3A7D44;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.updateCard h3 {
+    font-size: 1.15rem;
+    color: #1A1A1A;
+    margin-bottom: 0.5rem;
+}
+
+.updateCard p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.date {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .updatesPage {
+        padding: 2rem 0 3rem;
+    }
+
+    .updatesList {
+        padding-left: 1.5rem;
+    }
+
+    .updateCard {
+        margin-left: 1rem;
+        padding: 1.25rem;
+    }
+
+    .updateCard::before {
+        left: -2.125rem;
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .updatesList {
+        padding-left: 1rem;
+    }
+
+    .updateCard {
+        margin-left: 0.75rem;
+        padding: 1rem;
+    }
+
+    .updateCard::before {
+        left: -1.5rem;
+        width: 8px;
+        height: 8px;
+    }
+}

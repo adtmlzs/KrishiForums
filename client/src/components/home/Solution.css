@@ -1,0 +1,130 @@
+.solution-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #F8FAF5 0%, #E8F5E9 100%);
+}
+
+.solution-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.solution-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+}
+
+.solution-flow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.flow-step {
+    background: white;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    flex: 1;
+    max-width: 220px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(124, 179, 66, 0.1);
+    transition: 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+.flow-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(58, 125, 68, 0.12);
+}
+
+.flow-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #3A7D44, #7CB342);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin: 0 auto 1rem;
+}
+
+.flow-step h3 {
+    font-size: 1.1rem;
+    color: #3A7D44;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.flow-step p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.flow-arrow {
+    font-size: 1.5rem;
+    color: #7CB342;
+    font-weight: 700;
+    padding-top: 2.5rem;
+    flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .solution-section {
+        padding: 4rem 0;
+    }
+
+    .solution-flow {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .flow-step {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+        padding-top: 0;
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .solution-section {
+        padding: 3rem 0;
+    }
+
+    .flow-step {
+        padding: 1.25rem;
+    }
+}

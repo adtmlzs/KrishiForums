@@ -1,0 +1,236 @@
+.future-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #F8FAF5 0%, #E8F5E9 100%);
+    position: relative;
+}
+
+.future-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.future-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.6;
+}
+
+.future-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.future-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    animation: slideUp 0.6s ease forwards;
+    animation-delay: var(--delay, 0s);
+    position: relative;
+    overflow: hidden;
+}
+
+.future-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+}
+
+.future-card--active::before {
+    background: linear-gradient(90deg, #3A7D44, #7CB342);
+}
+
+.future-card--upcoming::before {
+    background: linear-gradient(90deg, #F57C00, #FFB74D);
+}
+
+.future-card--planned::before {
+    background: linear-gradient(90deg, #1976D2, #64B5F6);
+}
+
+.future-card--vision::before {
+    background: linear-gradient(90deg, #7B1FA2, #CE93D8);
+}
+
+.future-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.future-card--active:hover {
+    border-color: #7CB342;
+}
+
+.future-card--upcoming:hover {
+    border-color: #FFB74D;
+}
+
+.future-card--planned:hover {
+    border-color: #64B5F6;
+}
+
+.future-card--vision:hover {
+    border-color: #CE93D8;
+}
+
+.future-badge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.future-card--active .future-badge {
+    background: rgba(124, 179, 66, 0.12);
+    color: #3A7D44;
+}
+
+.future-card--upcoming .future-badge {
+    background: rgba(245, 124, 0, 0.12);
+    color: #E65100;
+}
+
+.future-card--planned .future-badge {
+    background: rgba(25, 118, 210, 0.12);
+    color: #1565C0;
+}
+
+.future-card--vision .future-badge {
+    background: rgba(123, 31, 162, 0.12);
+    color: #6A1B9A;
+}
+
+.future-card h3 {
+    font-size: 1.25rem;
+    color: #1a1a1a;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+}
+
+.future-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.future-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.feature-chip {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    background: #f0f7eb;
+    color: #3A7D44;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.feature-chip:hover {
+    background: #3A7D44;
+    color: white;
+}
+
+/* CTA Banner */
+.future-cta {
+    background: linear-gradient(135deg, #2D5016 0%, #3A7D44 50%, #7CB342 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cta-content h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content strong {
+    color: #FFD700;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .future-section {
+        padding: 4rem 0;
+    }
+
+    .future-timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .future-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .future-cta {
+        padding: 2rem 1.5rem;
+    }
+
+    .cta-content h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .future-section {
+        padding: 3rem 0;
+    }
+
+    .future-card {
+        padding: 1.5rem;
+    }
+
+    .future-cta {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+}

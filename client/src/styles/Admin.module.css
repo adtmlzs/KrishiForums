@@ -1,0 +1,621 @@
+/* ====================================
+   ADMIN PANEL - Modern Redesign
+   ==================================== */
+
+.adminPage {
+    min-height: 100vh;
+    background: #f5f7f3;
+    padding: 2rem 0 4rem;
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* ====================================
+   LOGIN SCREEN
+   ==================================== */
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7f3 0%, #e8f5e9 100%);
+}
+
+.loginBox {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: scaleIn 0.4s ease-out;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.loginBox h1 {
+    font-size: 1.75rem;
+    color: #3A7D44;
+    margin-bottom: 0.5rem;
+}
+
+.loginBox p {
+    color: #888;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.loginBox input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-bottom: 1rem;
+    transition: 0.25s ease;
+    background: #fafafa;
+    text-align: center;
+}
+
+.loginBox input:focus {
+    outline: none;
+    border-color: #7CB342;
+    box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.1);
+    background: white;
+}
+
+.loginBox button {
+    width: 100%;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loginBox button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(58, 125, 68, 0.3);
+}
+
+.loginError {
+    color: #e53935;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ====================================
+   ADMIN LAYOUT
+   ==================================== */
+
+.adminContainer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.adminHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.adminTitle {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: #3A7D44;
+}
+
+.logoutButton {
+    padding: 0.5rem 1.25rem;
+    background: none;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logoutButton:hover {
+    border-color: #e53935;
+    color: #e53935;
+    background: rgba(229, 57, 53, 0.04);
+}
+
+/* ====================================
+   TABS
+   ==================================== */
+
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tabs button {
+    padding: 0.7rem 1.5rem;
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #777;
+    cursor: pointer;
+    transition: 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.tabs button:hover {
+    border-color: #c8e6c9;
+    color: #3A7D44;
+    background: #f8faf5;
+}
+
+.activeTab {
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%) !important;
+    color: white !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 12px rgba(58, 125, 68, 0.25);
+}
+
+/* ====================================
+   TAB CONTENT
+   ==================================== */
+
+.tabContent {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    animation: fadeInUp 0.3s ease-out;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 1.15rem;
+    color: #3A7D44;
+}
+
+/* ====================================
+   DASHBOARD
+   ==================================== */
+
+.dashboard h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.statCard {
+    background: linear-gradient(135deg, #f8faf5 0%, #e8f5e9 100%);
+    padding: 1.5rem;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid rgba(124, 179, 66, 0.15);
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.statCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(58, 125, 68, 0.12);
+}
+
+.statIcon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.statCard h3 {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.statNumber {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #3A7D44;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.statCard span {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.pageViews {
+    list-style: none;
+    padding: 0;
+    background: #fafafa;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.pageViews li {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+}
+
+.pageViews li:last-child {
+    border-bottom: none;
+}
+
+/* ====================================
+   FORMS
+   ==================================== */
+
+.form {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: #fafafa;
+    border-radius: 14px;
+    border: 1px solid #f0f0f0;
+}
+
+.form input,
+.form textarea,
+.form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: 0.25s ease;
+    background: white;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+    outline: none;
+    border-color: #7CB342;
+    box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.08);
+}
+
+.form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form button {
+    padding: 0.7rem 1.5rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    transition: 0.25s ease;
+}
+
+.form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(58, 125, 68, 0.25);
+}
+
+.form button[type="button"] {
+    background: #e0e0e0;
+    color: #555;
+}
+
+.form button[type="button"]:hover {
+    background: #d0d0d0;
+    box-shadow: none;
+    transform: none;
+}
+
+.form label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ====================================
+   LISTS (Blogs, Questions, Updates)
+   ==================================== */
+
+.blogsList,
+.forumTab,
+.updatesList {
+    margin-top: 1.5rem;
+}
+
+.blogsList h2,
+.forumTab h2,
+.updatesList h2 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.blogItem,
+.questionItem,
+.updateItem {
+    padding: 1.25rem;
+    background: #fafafa;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #f0f0f0;
+    transition: 0.25s ease;
+}
+
+.blogItem:hover,
+.questionItem:hover,
+.updateItem:hover {
+    border-color: #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.blogItem h3,
+.questionItem h3,
+.updateItem h3 {
+    font-size: 1.1rem;
+    color: #1A1A1A;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.blogItem p,
+.questionItem p,
+.updateItem p {
+    color: #666;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.blogActions,
+.questionMeta,
+.updateActions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.blogActions span,
+.questionMeta span,
+.updateActions span {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.blogActions button,
+.questionMeta button,
+.updateActions button {
+    padding: 0.4rem 0.85rem;
+    background: #3A7D44;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.blogActions button:hover,
+.questionMeta button:hover,
+.updateActions button:hover {
+    background: #2D5016;
+}
+
+.blogActions button:last-child,
+.updateActions button:last-child {
+    background: none;
+    color: #e53935;
+    border: 1px solid #e53935;
+}
+
+.blogActions button:last-child:hover,
+.updateActions button:last-child:hover {
+    background: #e53935;
+    color: white;
+}
+
+/* ====================================
+   ANSWER SECTION
+   ==================================== */
+
+.answerSection {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+}
+
+.answerSection h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    color: #3A7D44;
+}
+
+.answer {
+    padding: 0.85rem;
+    background: #f8faf5;
+    border-left: 3px solid #7CB342;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.answerSection textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+    margin-bottom: 0.5rem;
+    transition: 0.25s ease;
+}
+
+.answerSection textarea:focus {
+    outline: none;
+    border-color: #7CB342;
+}
+
+.answerSection button {
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, #3A7D44 0%, #7CB342 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.answerSection button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(58, 125, 68, 0.2);
+}
+
+/* ====================================
+   UPDATE CATEGORY
+   ==================================== */
+
+.updateCategory {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    background: rgba(124, 179, 66, 0.1);
+    color: #3A7D44;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+
+@media (max-width: 768px) {
+    .adminPage {
+        padding: 1.5rem 0 3rem;
+    }
+
+    .adminHeader {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    .tabs {
+        justify-content: flex-start;
+        gap: 0.4rem;
+    }
+
+    .tabs button {
+        padding: 0.6rem 1.15rem;
+        font-size: 0.85rem;
+    }
+
+    .tabContent {
+        padding: 1.5rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .statCard {
+        padding: 1.25rem 1rem;
+    }
+
+    .statNumber {
+        font-size: 1.75rem;
+    }
+
+    .form {
+        padding: 1.25rem;
+    }
+
+    .loginBox {
+        padding: 2rem;
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .adminContainer {
+        padding: 0 0.75rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .tabContent {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .blogItem,
+    .questionItem,
+    .updateItem {
+        padding: 1rem;
+    }
+
+    .blogActions,
+    .questionMeta,
+    .updateActions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+    }
+}
