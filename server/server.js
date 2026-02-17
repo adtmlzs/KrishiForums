@@ -26,20 +26,60 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // Import models
-const ForumQuestion = require('./models/ForumQuestion');
+const forumQuestion = require('./models/ForumQuestion');
 const Analytics = require('./models/Analytics');
+const Blog = require('./models/Blog');
+const Update = require('./models/Update');
 
 // Admin password (hashed)
 const ADMIN_PASSWORD_HASH = bcrypt.hashSync('krishi@2026', 10);
 
 // Middleware
+// ========== CORS CONFIGURATION ==========
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    /\.vercel\.app$/  // Allows all Vercel deployment URLs
+];
+
 app.use(cors({
-    origin: true, // Reflection: returns the origin of the request
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        const isAllowed = allowedOrigins.some(allowed => {
+            if (allowed instanceof RegExp) return allowed.test(origin);
+            return allowed === origin;
+        });
+
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(null, true); // Fallback to allowing for now if specific check fails
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'x-admin-password', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'x-admin-password', 'Authorization', 'Origin', 'Accept'],
     optionsSuccessStatus: 200
 }));
+
+// Manual CORS fallback for Vercel
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-password, Authorization, Origin, Accept');
+
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    next();
+});
 app.use(express.json());
 
 // Root route for health check
@@ -103,13 +143,14 @@ const trackView = (page) => async (req, res, next) => {
     next();
 };
 
-// ==================== BLOG ROUTES ====================
+// ==================== BLOG ROUTES (MongoDB) ====================
 
 // Get all blogs
 app.get('/api/blogs', trackView('blog'), async (req, res) => {
     try {
-        const blogs = await readJSON(BLOGS_FILE);
-        const publishedBlogs = blogs.filter(blog => blog.isPublished);
+        const publishedBlogs = await Blog.find({ isPublished: true })
+            .sort({ publishedDate: -1 })
+            .lean();
         res.json(publishedBlogs);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch blogs' });
@@ -119,8 +160,7 @@ app.get('/api/blogs', trackView('blog'), async (req, res) => {
 // Get single blog by slug
 app.get('/api/blogs/:slug', async (req, res) => {
     try {
-        const blogs = await readJSON(BLOGS_FILE);
-        const blog = blogs.find(b => b.slug === req.params.slug);
+        const blog = await Blog.findOne({ slug: req.params.slug });
 
         if (!blog) {
             return res.status(404).json({ error: 'Blog not found' });
@@ -128,12 +168,16 @@ app.get('/api/blogs/:slug', async (req, res) => {
 
         // Increment view count
         blog.views = (blog.views || 0) + 1;
-        await writeJSON(BLOGS_FILE, blogs);
+        await blog.save();
 
-        // Track in analytics
-        const analytics = await readJSON(ANALYTICS_FILE);
-        analytics.blogViews[blog.id] = (analytics.blogViews[blog.id] || 0) + 1;
-        await writeJSON(ANALYTICS_FILE, analytics);
+        // Track in MongoDB analytics (async)
+        Analytics.getInstance().then(async (analytics) => {
+            if (!analytics.blogViews.has(blog.id)) {
+                analytics.blogViews.set(blog.id, 0);
+            }
+            analytics.blogViews.set(blog.id, analytics.blogViews.get(blog.id) + 1);
+            await analytics.save();
+        }).catch(err => console.error('Analytics blog view error:', err));
 
         res.json(blog);
     } catch (error) {
@@ -144,16 +188,14 @@ app.get('/api/blogs/:slug', async (req, res) => {
 // Create blog (admin) - requires authentication
 app.post('/api/blogs', authenticateAdmin, async (req, res) => {
     try {
-        const blogs = await readJSON(BLOGS_FILE);
-        const newBlog = {
+        const newBlog = new Blog({
             id: uuidv4(),
             ...req.body,
             slug: req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-            publishedDate: new Date().toISOString(),
+            publishedDate: new Date(),
             views: 0
-        };
-        blogs.push(newBlog);
-        await writeJSON(BLOGS_FILE, blogs);
+        });
+        await newBlog.save();
         res.status(201).json(newBlog);
     } catch (error) {
         res.status(500).json({ error: 'Failed to create blog' });
@@ -163,21 +205,20 @@ app.post('/api/blogs', authenticateAdmin, async (req, res) => {
 // Update blog (admin) - requires authentication
 app.put('/api/blogs/:id', authenticateAdmin, async (req, res) => {
     try {
-        const blogs = await readJSON(BLOGS_FILE);
-        const index = blogs.findIndex(b => b.id === req.params.id);
+        const blog = await Blog.findOne({ id: req.params.id });
 
-        if (index === -1) {
+        if (!blog) {
             return res.status(404).json({ error: 'Blog not found' });
         }
 
-        blogs[index] = {
-            ...blogs[index],
-            ...req.body,
-            slug: req.body.title ? req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') : blogs[index].slug
-        };
+        const updates = { ...req.body };
+        if (updates.title) {
+            updates.slug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        }
 
-        await writeJSON(BLOGS_FILE, blogs);
-        res.json(blogs[index]);
+        Object.assign(blog, updates);
+        await blog.save();
+        res.json(blog);
     } catch (error) {
         res.status(500).json({ error: 'Failed to update blog' });
     }
@@ -186,9 +227,7 @@ app.put('/api/blogs/:id', authenticateAdmin, async (req, res) => {
 // Delete blog (admin) - requires authentication
 app.delete('/api/blogs/:id', authenticateAdmin, async (req, res) => {
     try {
-        const blogs = await readJSON(BLOGS_FILE);
-        const filtered = blogs.filter(b => b.id !== req.params.id);
-        await writeJSON(BLOGS_FILE, filtered);
+        await Blog.findOneAndDelete({ id: req.params.id });
         res.json({ message: 'Blog deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete blog' });
@@ -198,7 +237,7 @@ app.delete('/api/blogs/:id', authenticateAdmin, async (req, res) => {
 // Get all blogs for admin (including unpublished) - requires authentication
 app.get('/api/admin/blogs', authenticateAdmin, async (req, res) => {
     try {
-        const blogs = await readJSON(BLOGS_FILE);
+        const blogs = await Blog.find().sort({ createdAt: -1 }).lean();
         res.json(blogs);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch blogs' });
@@ -361,13 +400,13 @@ app.delete('/api/forum/:id/answer/:answerId', authenticateAdmin, async (req, res
     }
 });
 
-// ==================== UPDATES ROUTES ====================
+// ==================== UPDATES ROUTES (MongoDB) ====================
 
 // Get all updates
 app.get('/api/updates', trackView('updates'), async (req, res) => {
     try {
-        const updates = await readJSON(UPDATES_FILE);
-        res.json(updates.reverse()); // Most recent first
+        const updates = await Update.find().sort({ date: -1 }).lean();
+        res.json(updates);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch updates' });
     }
@@ -376,14 +415,12 @@ app.get('/api/updates', trackView('updates'), async (req, res) => {
 // Create update (admin) - requires authentication
 app.post('/api/updates', authenticateAdmin, async (req, res) => {
     try {
-        const updates = await readJSON(UPDATES_FILE);
-        const newUpdate = {
+        const newUpdate = new Update({
             id: uuidv4(),
             ...req.body,
-            date: new Date().toISOString()
-        };
-        updates.push(newUpdate);
-        await writeJSON(UPDATES_FILE, updates);
+            date: new Date()
+        });
+        await newUpdate.save();
         res.status(201).json(newUpdate);
     } catch (error) {
         res.status(500).json({ error: 'Failed to create update' });
@@ -393,9 +430,7 @@ app.post('/api/updates', authenticateAdmin, async (req, res) => {
 // Delete update (admin) - requires authentication
 app.delete('/api/updates/:id', authenticateAdmin, async (req, res) => {
     try {
-        const updates = await readJSON(UPDATES_FILE);
-        const filtered = updates.filter(u => u.id !== req.params.id);
-        await writeJSON(UPDATES_FILE, filtered);
+        await Update.findOneAndDelete({ id: req.params.id });
         res.json({ message: 'Update deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete update' });
@@ -405,20 +440,15 @@ app.delete('/api/updates/:id', authenticateAdmin, async (req, res) => {
 // Edit update (admin) - requires authentication
 app.put('/api/updates/:id', authenticateAdmin, async (req, res) => {
     try {
-        const updates = await readJSON(UPDATES_FILE);
-        const index = updates.findIndex(u => u.id === req.params.id);
+        const update = await Update.findOne({ id: req.params.id });
 
-        if (index === -1) {
+        if (!update) {
             return res.status(404).json({ error: 'Update not found' });
         }
 
-        updates[index] = {
-            ...updates[index],
-            ...req.body
-        };
-
-        await writeJSON(UPDATES_FILE, updates);
-        res.json(updates[index]);
+        Object.assign(update, req.body);
+        await update.save();
+        res.json(update);
     } catch (error) {
         res.status(500).json({ error: 'Failed to edit update' });
     }
@@ -432,20 +462,19 @@ app.get('/api/analytics', authenticateAdmin, async (req, res) => {
         // Get analytics from MongoDB
         const analytics = await Analytics.getInstance();
 
-        // Get counts from databases (fast countDocuments queries)
-        const blogs = await readJSON(BLOGS_FILE);
-        const updates = await readJSON(UPDATES_FILE);
-
-        // Use MongoDB aggregation for fast counts
+        // Get counts from databases
+        const totalBlogs = await Blog.countDocuments();
+        const publishedBlogs = await Blog.countDocuments({ isPublished: true });
+        const totalUpdates = await Update.countDocuments();
         const totalQuestions = await ForumQuestion.countDocuments();
         const answeredQuestions = await ForumQuestion.countDocuments({ isAnswered: true });
 
         // Update stats in analytics document
-        analytics.stats.totalBlogs = blogs.length;
-        analytics.stats.publishedBlogs = blogs.filter(b => b.isPublished).length;
+        analytics.stats.totalBlogs = totalBlogs;
+        analytics.stats.publishedBlogs = publishedBlogs;
         analytics.stats.totalQuestions = totalQuestions;
         analytics.stats.answeredQuestions = answeredQuestions;
-        analytics.stats.totalUpdates = updates.length;
+        analytics.stats.totalUpdates = totalUpdates;
         await analytics.save();
 
         res.json({
