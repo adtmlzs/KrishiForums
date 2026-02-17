@@ -26,7 +26,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // Import models
-const forumQuestion = require('./models/ForumQuestion');
+const ForumQuestion = require('./models/ForumQuestion');
 const Analytics = require('./models/Analytics');
 const Blog = require('./models/Blog');
 const Update = require('./models/Update');
